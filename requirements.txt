@@ -1,0 +1,10 @@
+evidently
+fastapi
+uvicorn
+scikit-learn
+pandas
+numpy
+mlflow
+prometheus-client
+requests
+python-dotenv
