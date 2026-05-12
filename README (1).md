@@ -73,7 +73,7 @@ bicycle_monitoring/
 │
 ├── api/
 │   ├── __init__.py
-│   └── main.py              # FastAPI app — 3 endpoints
+│   └── main.py              # FastAPI app — 3 endpoints  in cmd type uvicorn api.main:app --reload
 │
 ├── data/
 │   └── data_loader.py       # Load & split bike demand dataset
