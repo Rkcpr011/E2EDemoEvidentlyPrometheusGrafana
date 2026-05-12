@@ -20,6 +20,8 @@ services:
       - "9090:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - fastapi
 
   grafana:
     image: grafana/grafana:latest
@@ -30,8 +32,5 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning
-
-depends_on_note: |
-  prometheus depends on fastapi being up.
-  grafana depends on prometheus being up.
-  For local dev, start manually or add healthchecks.
+    depends_on:
+      - prometheus

@@ -4,4 +4,5 @@ global:
 scrape_configs:
   - job_name: "bike_monitor"
     static_configs:
-      - targets: ["fastapi:8000"]   # service name in docker-compose
+      - targets: ["localhost:8000"]
+    metrics_path: "/metrics"

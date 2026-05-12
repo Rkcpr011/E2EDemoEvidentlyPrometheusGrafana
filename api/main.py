@@ -1,18 +1,10 @@
 from fastapi import FastAPI
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
 from starlette.responses import Response
-from data.data_loader import load_raw_data, get_reference_and_current
-from model.train import train_model
-from model.predict import add_predictions
 from monitoring.monitor import run_all_weeks
 from monitoring.metrics import update_metrics
 
 app = FastAPI(title="Bike Demand Monitor")
-
-_df = load_raw_data()
-_reference_raw, _current_raw = get_reference_and_current(_df)
-_model = train_model(_reference_raw)
-_reference, _current = add_predictions(_model, _reference_raw, _current_raw)
 
 @app.get("/health")
 def health():
@@ -20,7 +12,7 @@ def health():
 
 @app.get("/run-monitor")
 def run_monitor():
-    results = run_all_weeks(_reference, _current)
+    results = run_all_weeks()
     update_metrics(results)
     return {"status": "done", "results": results}
 
